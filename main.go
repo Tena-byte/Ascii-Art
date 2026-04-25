@@ -6,38 +6,38 @@ import (
 	"strings"
 )
 
-
 func main() {
 	asciiArt()
 }
 
-
 func asciiArt() {
 
-	ch := '&'
-	var art []string
+	data, _ := os.ReadFile("banners/testing.txt")
 
-	data, _ := os.ReadFile("banners/standard.txt")
+	//fmt.Print(data)
 
-	rows := strings.Split(string(data), "\n")
+	//rowInline := strings.Fields(string(data))
+	//fmt.Println(len(rowInline))
 
-	
-	rowHeight := 0
+	rowsInline := strings.Split(string(data), "")
+	//fmt.Print(  len(rowsInline))
 
-	for i := 1; i < len(rows); i++{
-		if rows[i] == ""{
-			rowHeight = i - 1
-			break
-		}
+	for i, r := range rowsInline{
+
+		fmt.Println(i, r)
 	}
 
-	start := int(ch - 32) * (rowHeight + 1) + 1
+	// rowsHeight := 0
 
-	for j := 0; j < rowHeight; j++{
+	// for i := 0; i < len(rowsInline); i++ {
 
-		startIndex := start + j
-		art = append(art, rows[startIndex])
-	}
+	// 	if rowsInline[i] == "" {
 
-	fmt.Println(strings.Join(art, "\n"))
+	// 		rowsHeight   = i - 1
+
+	// 	}
+	// }
+
+	//fmt.Println(rowsHeight)
+
 }
