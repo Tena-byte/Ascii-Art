@@ -12,32 +12,30 @@ func main() {
 
 func asciiArt() {
 
-	data, _ := os.ReadFile("banners/testing.txt")
+	ch := 'T'
+	var art []string
 
-	//fmt.Print(data)
+	data, _ := os.ReadFile("banners/thinkertoy.txt")
 
-	//rowInline := strings.Fields(string(data))
-	//fmt.Println(len(rowInline))
+	rowsInline := strings.Split(string(data), "\n")
 
-	rowsInline := strings.Split(string(data), "")
-	//fmt.Print(  len(rowsInline))
 
-	for i, r := range rowsInline{
+	rowsHeight := 0
 
-		fmt.Println(i, r)
+	for i := 1; i < len(rowsInline); i++ {
+		if rowsInline[i] == "" {
+			rowsHeight = i - 1
+			break
+		}
 	}
 
-	// rowsHeight := 0
+	startIndex := int(ch - 32)*(rowsHeight + 1) + 1
 
-	// for i := 0; i < len(rowsInline); i++ {
+	for j := 0; j < rowsHeight; j++{
 
-	// 	if rowsInline[i] == "" {
+			art = append(art, rowsInline[startIndex + j])
+		 
+	}
 
-	// 		rowsHeight   = i - 1
-
-	// 	}
-	// }
-
-	//fmt.Println(rowsHeight)
-
+	fmt.Println(strings.Join(art, "\n"))
 }
