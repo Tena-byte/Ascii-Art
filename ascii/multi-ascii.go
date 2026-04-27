@@ -12,27 +12,26 @@ func multiAscii() {
 		fmt.Println("failed")
 		return
 	}
-
+	text := os.Args[1]
 	data, _ := os.ReadFile("banners/standard.txt")
 	rowsInLine := strings.Split(string(data), "\n")
 
-	text := os.Args[1]
-
 	rowHeight := 0
-
 	for i := 1; i < len(rowsInLine); i++ {
-
 		if rowsInLine[i] == "" {
 			rowHeight = i - 1
 			break
 		}
 	}
-
 	text = strings.NewReplacer("\\n", "\n").Replace(text)
 	lines := strings.Split(text, "\n")
 
-	for _, line := range lines {
+	const (
+		start = 32
+		stop  = 127
+	)
 
+	for _, line := range lines {
 		if line == "" {
 			fmt.Println()
 			return
@@ -40,6 +39,11 @@ func multiAscii() {
 
 		art := make([]string, rowHeight)
 		for _, ch := range line {
+
+			if ch < start || ch > stop {
+				fmt.Printf("Invalid Ascii value found : %q \n", ch)
+				return 
+			}
 
 			startIndex := int(ch-32)*(rowHeight+1) + 1
 
