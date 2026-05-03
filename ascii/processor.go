@@ -2,5 +2,6 @@ package ascii
 
 func Process() {
 	//asciiArt()
-	multiAscii()
+	//multiAscii()
+	testAscii()
 }
