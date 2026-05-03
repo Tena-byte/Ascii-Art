@@ -8,10 +8,6 @@ import (
 
 func multiAscii() {
 
-	if len(os.Args) != 2 {
-		fmt.Println("failed")
-		return
-	}
 	text := os.Args[1]
 	data, _ := os.ReadFile("banners/standard.txt")
 	rowsInLine := strings.Split(string(data), "\n")
@@ -23,8 +19,8 @@ func multiAscii() {
 			break
 		}
 	}
-	text = strings.NewReplacer("\\n", "\n").Replace(text)
-	lines := strings.Split(text, "\n")
+	
+	lines := strings.Split(text, "\\n")
 
 	const (
 		start = 32

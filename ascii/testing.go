@@ -10,13 +10,10 @@ func testAscii() {
 
 	inputfile := os.Args[1]
 	inputext := os.Args[2]
-
 	input := Fileloder(inputfile)
-
 	splited := spliter(input)
 	mapped := Mapper(splited)
 	rendered := Renderer(inputext, mapped)
-
 	fmt.Println(rendered)
 
 }
