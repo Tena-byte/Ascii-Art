@@ -9,15 +9,15 @@ import (
 func testAscii() {
 
 	inputfile := os.Args[1]
-	//inputext := os.Args[2]
+	inputext := os.Args[2]
 
 	input := Fileloder(inputfile)
 
 	splited := spliter(input)
 	mapped := Mapper(splited)
-	//rendered := Renderer(inputext, mapped)
+	rendered := Renderer(inputext, mapped)
 
-	fmt.Println(mapped)
+	fmt.Println(rendered)
 
 }
 
@@ -41,12 +41,11 @@ func Mapper(lines []string) map[rune][]string {
 	index := 0
 	asciicode := 32
 
-	for _, line := range lines {
-		if index+8 < len(line) {
+	for index < len(lines) {
+		if index+8 > len(lines) {
 			break
 		}
 		block := lines[index : index+8]
-		fmt.Println(block)
 		cMap[rune(asciicode)] = block
 		index += 9
 		asciicode++
@@ -55,9 +54,25 @@ func Mapper(lines []string) map[rune][]string {
 
 }
 
-// func Renderer(inputext byte, cMap map[rune][]string) string {
-// 	words := string(inputext)
-// 	word := strings.Split(words, "\\n")
+func Renderer(inputext string, cMap map[rune][]string) string {
+	words := strings.Split(inputext, "\\n")
 
-// }
+	for _, line := range words{
+		for i := range 8{
+			if line == " " {
+				fmt.Println("Empty words not allowed! Enter a word")
+				continue
+			}
+			for _, char := range line {
+				if block, ok := cMap[rune(char)]; ok {
+					fmt.Print(block[i])
+				}else{
+					fmt.Print(cMap[' '][i])
+				}
+			}
+			fmt.Println()
+		}
+	}
+	return ""
 
+}
