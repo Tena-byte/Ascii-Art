@@ -18,31 +18,37 @@ func goodRender() {
 	data, _ := os.ReadFile(bannerPath)
 	rows := strings.Split(string(data), "\n")
 
-	lines := strings.Split(inputext, "\\n")
 
+	const (
+		start = 32
+		stop = 126
+	)
+
+	lines := strings.Split(inputext, "\\n")
 	for _, line := range lines {
 
 		if line == "" {
 			fmt.Println()
 			continue
 		}
-		cMap := make(map[rune][]string)
 
+
+		makeMap := make(map[rune][]string)
 		
 		for i := 0; i < 8; i++ {
 
 			for _, ch := range line {
 
+				if ch < start || ch > stop {
+					fmt.Println()
+					return
+				}
 				startIndex := int(ch-32)*9 + 1
-				
-				cMap[ch] = rows[startIndex : startIndex+8]
 
-				fmt.Print(cMap[ch][i])
+				makeMap[ch] = rows[startIndex : startIndex+8]
+				fmt.Print(makeMap[ch][i])
 			}
 			fmt.Println()
 		}
-
-		
-
 	}
 }

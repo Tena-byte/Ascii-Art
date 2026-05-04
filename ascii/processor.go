@@ -4,5 +4,6 @@ func Process() {
 	//asciiArt()
 	//multiAscii()
 	//testAscii()``
-	 goodRender()
+	// goodRender()
+	doItMyself()
 }
