@@ -8,9 +8,9 @@ import (
 
 func testAscii() {
 
-	inputfile := os.Args[1]
+	//inputfile := os.Args[1]
 	inputext := os.Args[2]
-	input := Fileloder(inputfile)
+	input := Fileloder(os.Args[1])
 	splited := spliter(input)
 	mapped := Mapper(splited)
 	rendered := Renderer(inputext, mapped)
